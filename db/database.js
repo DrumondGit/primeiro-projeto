@@ -3,10 +3,10 @@ const mysql = require('mysql');
 
 // Configuração da conexão com o banco de dados
 const db = mysql.createConnection({
-  host: 'dpg-cj7h5mcl975s73frmm0g-a',
-  user: 'dbuser',
-  password: 'xluz883SGqo5D3dN2rUMt7em7o5QTcgH',
-  database: 'dbname_yoyn'
+  host: 'dpg-cj7i3j45kgrc73do3o50-a.ohio-postgres.render.com',
+  user: 'database_wct0_user',
+  password: 'nq2StX0ZxFIOxHqN152cMAGz1VDXmief',
+  database: 'ddatabase_wct0'
 });
 
 // Conectar ao banco de dados
