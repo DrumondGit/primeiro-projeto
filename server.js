@@ -1,35 +1,40 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
-const db = require('./db/database.js');
+const { Pool } = require('pg');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
 
+// Configuração do Pool do PostgreSQL com a URL de conexão diretamente
+const pool = new Pool({
+  connectionString: 'postgres://database_wct0_user:nq2StX0ZxFIOxHqN152cMAGz1VDXmief@dpg-cj7i3j45kgrc73do3o50-a.ohio-postgres.render.com/database_wct0',
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
 // Rota para criar um novo item no banco de dados
-app.post('/items', (req, res) => {
+app.post('/items', async (req, res) => {
   const { name } = req.body;
-  db.query('INSERT INTO items (name) VALUES (?)', [name], (err, result) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
-    res.json({ message: 'Item criado com sucesso', id: result.insertId });
-  });
+  try {
+    const result = await pool.query('INSERT INTO items (name) VALUES ($1) RETURNING id', [name]);
+    res.json({ message: 'Item criado com sucesso', id: result.rows[0].id });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Rota para listar todos os itens
-app.get('/items', (req, res) => {
-  db.query('SELECT * FROM items', (err, rows) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
+app.get('/items', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM items');
     res.json(rows);
-  });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.listen(PORT, () => {
