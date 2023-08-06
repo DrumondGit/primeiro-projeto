@@ -15,5 +15,8 @@
     "pg": "^8.11.2"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "",
+  "engines": {
+    "node": ">=14 <15"
+  }
 }
