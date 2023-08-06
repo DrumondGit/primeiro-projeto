@@ -3,10 +3,10 @@ const mysql = require('mysql');
 
 // Configuração da conexão com o banco de dados
 const db = mysql.createConnection({
-  host: 'dpg-cj6st85jeehc73902nh0-a',
-  user: 'nodedeploy_o5ro_user',
-  password: 'NSIWtm9DrkBzoB13PHm7zWtBvJLgifQ9',
-  database: 'nodedeploy_o5ro'
+  host: 'dpg-cj7h5mcl975s73frmm0g-a',
+  user: 'dbuser',
+  password: 'xluz883SGqo5D3dN2rUMt7em7o5QTcgH',
+  database: 'dbname_yoyn'
 });
 
 // Conectar ao banco de dados
