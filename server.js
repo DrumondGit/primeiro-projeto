@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path'); // Importe o módulo 'path'
 const cors = require('cors');
 const { Pool } = require('pg');
 
