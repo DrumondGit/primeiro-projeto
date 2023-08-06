@@ -5,6 +5,11 @@ const { Pool } = require('pg');
 const app = express();
 const PORT = process.env.PORT;
 
+// Configuração para servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public'))); // 'public' é o nome da pasta onde seus arquivos estáticos estão
+
+app.use(express.json());
+
 app.use(cors());
 app.use(express.json());
 
