@@ -6,7 +6,7 @@ itemForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const name = itemName.value;
-  const response = await fetch('http://localhost:3000/items', {
+  const response = await fetch('https://primeiro-projeto.onrender.com/items', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ itemForm.addEventListener('submit', async (event) => {
 });
 
 async function fetchItems() {
-  const response = await fetch('http://localhost:3000/items');
+  const response = await fetch('https://primeiro-projeto.onrender.com/items');
   const items = await response.json();
 
   itemTable.innerHTML = '';
